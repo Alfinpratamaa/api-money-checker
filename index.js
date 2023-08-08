@@ -4,7 +4,7 @@ require("dotenv").config();
 const Transaction = require("./models/Transaction");
 const mongoose = require("mongoose");
 
-const port = 5000;
+const port = 8001;
 
 const app = express();
 
