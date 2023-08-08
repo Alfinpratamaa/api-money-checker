@@ -16,11 +16,11 @@ const TransactionSchema = new Schema({
     required: true,
   },
   datetime: {
-    type: String,
+    type: Date, // Use Date type for datetime
     required: true,
   },
 });
 
-const TransactionModels = model("Transaction", TransactionSchema);
+const TransactionModel = model("Transaction", TransactionSchema);
 
-module.exports = TransactionModels;
+module.exports = TransactionModel;
