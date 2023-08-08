@@ -4,7 +4,7 @@ require("dotenv").config();
 const Transaction = require("./models/Transaction");
 const mongoose = require("mongoose");
 
-const port = process.env.PORT || 5000;
+const port = 5000;
 
 const app = express();
 
@@ -18,7 +18,9 @@ app.get("/api/test", (req, res) => {
 });
 app.use(async (req, res, next) => {
   if (!mongoose.connection.readyState) {
-    await mongoose.connect(process.env.MONGO_URL);
+    await mongoose.connect(
+      "mongodb+srv://alfin:1234@cluster0.umboxyk.mongodb.net/?retryWrites=true&w=majority"
+    );
   }
   next();
 });
@@ -29,7 +31,9 @@ process.on("SIGINT", async () => {
 });
 
 app.post("/api/transaction", async (req, res) => {
-  await mongoose.connect(process.env.MONGO_URL);
+  await mongoose.connect(
+    "mongodb+srv://alfin:1234@cluster0.umboxyk.mongodb.net/?retryWrites=true&w=majority"
+  );
   const { name, description, datetime, price } = req.body;
   try {
     const transaction = await Transaction.create({
@@ -48,7 +52,9 @@ app.post("/api/transaction", async (req, res) => {
 });
 
 app.get("/api/transactions", async (req, res) => {
-  await mongoose.connect(process.env.MONGO_URL);
+  await mongoose.connect(
+    "mongodb+srv://alfin:1234@cluster0.umboxyk.mongodb.net/?retryWrites=true&w=majority"
+  );
   const transactions = await Transaction.find();
   res.json(transactions);
 });
